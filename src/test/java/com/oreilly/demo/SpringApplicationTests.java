@@ -30,12 +30,19 @@ public class SpringApplicationTests {
         Stream.of(context.getBeanDefinitionNames()).forEach(System.out::println);
         assertAll(
                 () -> assertThat(context.getBeanDefinitionNames()).asList().contains("defaultNumberFormat"),
+                () -> assertThat(context.getBeanDefinitionNames()).asList().contains("germanNumberFormat"),
                 () -> assertTrue(Arrays.asList(context.getBeanDefinitionNames()).contains("defaultNumberFormat"))
         );
     }
 
     @Test
     void testDefaultNF(@Autowired NumberFormat numberFormat) {
+        double amount = 1234567.8901234;
+        logger.info(numberFormat.format(amount));
+    }
+
+    @Test
+    void testGermanNF(@Autowired NumberFormat numberFormat) {
         double amount = 1234567.8901234;
         logger.info(numberFormat.format(amount));
     }
