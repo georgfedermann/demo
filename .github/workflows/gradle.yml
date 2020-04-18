@@ -12,5 +12,9 @@ jobs:
           ls -lisah
           pwd
           if command -v tree; then tree; fi
+      - name: Set up JDK 11
+        uses: action/setup-java@1
+        with:
+          java-version: 11
       - name: run unittests
         run: ./gradlew clean test
