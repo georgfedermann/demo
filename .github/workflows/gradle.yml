@@ -1,9 +1,11 @@
 - name: Java CI
-
-  on:
-    push:
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-    - name: run tests
-      run: ./gradlew clean test
+on: [push, pull_request]
+jobs:
+  unittest:
+    name: setup demoapp and run unit tests
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2.0.0
+      - name: run unittests
+        run: ./gradlew clean test
