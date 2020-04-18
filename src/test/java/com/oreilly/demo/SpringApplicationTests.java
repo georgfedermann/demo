@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 
@@ -36,15 +37,15 @@ public class SpringApplicationTests {
     }
 
     @Test
-    void testDefaultNF(@Autowired NumberFormat numberFormat) {
+    void testDefaultNF(@Autowired @Qualifier("defaultNumberFormat") NumberFormat numberFormat) {
         double amount = 1234567.8901234;
         logger.info(numberFormat.format(amount));
     }
 
     @Test
-    void testGermanNF(@Autowired NumberFormat numberFormat) {
+    void testGermanNF(@Autowired NumberFormat germanNumberFormat) {
         double amount = 1234567.8901234;
-        logger.info(numberFormat.format(amount));
+        logger.info(germanNumberFormat.format(amount));
     }
 
 }
