@@ -48,4 +48,12 @@ public class SpringApplicationTests {
         logger.info(germanNumberFormat.format(amount));
     }
 
+    @Test
+    void oneMoreTest() {
+        NumberFormat numberFormat = context.getBean("defaultNumberFormat", NumberFormat.class);
+        logger.info(numberFormat.format(1234567.890123));
+        NumberFormat anotherNumberFormat = context.getBean("defaultNumberFormat", NumberFormat.class);
+        assertThat(numberFormat).isSameInstanceAs(anotherNumberFormat);
+    }
+
 }
