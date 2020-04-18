@@ -7,5 +7,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2.0.0
+      - name: explore file system
+        run: |
+          ls -lisah
+          pwd
+          apt-get update && apt-get install -y tree
+          tree
       - name: run unittests
         run: ./gradlew clean test
